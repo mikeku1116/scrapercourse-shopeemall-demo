@@ -3,12 +3,16 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get(
     'https://shopee.tw/mall/%E5%B1%85%E5%AE%B6%E7%94%9F%E6%B4%BB-cat.11040925')
 time.sleep(5)
+
+ActionChains(driver).move_by_offset(100, 100).click().perform()
 
 cards = driver.find_elements(
     By.CSS_SELECTOR, "div[class='col-xs-2 recommend-products-by-view__item-card-wrapper']")
